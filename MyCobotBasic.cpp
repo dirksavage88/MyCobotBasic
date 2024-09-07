@@ -1129,6 +1129,27 @@ void MyCobotBasic::InitEletricGripper()
     return;
 }
 
+void MyCobotBasic::CustomGripperClose()
+{
+    mycobot_serial.write(header);
+    mycobot_serial.write(header);
+    mycobot_serial.write(CUSTOM_GRIPPER_CLOSE_LEN);
+    mycobot_serial.write(CUSTOM_GRIPPER_CLOSE);
+    mycobot_serial.write(footer);
+
+    return;
+}
+
+void MyCobotBasic::CustomGripperOpen()
+{
+    mycobot_serial.write(header);
+    mycobot_serial.write(header);
+    mycobot_serial.write(CUSTOM_GRIPPER_OPEN_LEN);
+    mycobot_serial.write(CUSTOM_GRIPPER_OPEN);
+    mycobot_serial.write(footer);
+
+    return;
+}
 void MyCobotBasic::setGripperMode(bool mode)
 {
     mycobot_serial.write(header);

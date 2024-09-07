@@ -146,6 +146,8 @@ public:
     bool isGripperMoving();  //Detect if the gripper is moving
     void setEletricGripper(bool mode); //control eletric gripper,0--open 1--close
     void InitEletricGripper(); //init eletric gripper,per after insert gripper,first init  
+    void CustomGripperOpen(); 
+    void CustomGripperClose();
     void setGripperMode(bool mode); //set gripper mode,0--unvarnished transmission 1--io control 
     bool getGripperMode(); //get gripper mode, 0/1
 

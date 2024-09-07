@@ -286,6 +286,12 @@
 #define MOVEC_COORDS_DEFAULT               0x8B
 #define MOVEC_COORDS_DEFAULT_LEN           38
 
+#define CUSTOM_GRIPPER_CLOSE               0x98
+#define CUSTOM_GRIPPER_CLOSE_LEN              3
+
+#define CUSTOM_GRIPPER_OPEN                0x99
+#define CUSTOM_GRIPPER_OPEN_LEN              3
+
 #define MOVEC_COORDS                       0x8C
 #define MOVEC_COORDS_LEN                   26
 

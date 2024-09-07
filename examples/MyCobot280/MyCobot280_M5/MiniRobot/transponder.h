@@ -17,6 +17,7 @@
   #include <BluetoothSerial.h>
 #endif
 #include "TOF.h"
+#include "CG.h"
 
 using namespace std;
 
@@ -148,6 +149,7 @@ private:
     bool loop_on{false};
     
     TOF tof;
+    CustomGripper mygripper;
     enum MODE : int {Uart = 0, Wlan = 1, Bt = 2, Exit = 3} transponder_mode;
     bool is_transparent_mode = false; //默认为非透传（比如指令特有帧头帧尾） ture--透传(接收指令后不处理)
 };

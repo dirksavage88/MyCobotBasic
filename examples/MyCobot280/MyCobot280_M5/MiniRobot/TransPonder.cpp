@@ -29,6 +29,7 @@ void Transponder::init()
         state_on = true;
     }
     info();
+
 }
 
 void Transponder::run(MyCobotBasic &myCobot)
@@ -335,13 +336,6 @@ bool Transponder::HandleOtherMsg(vector<unsigned char> &v_data)
                     v_data.insert(v_data.end() - 1, SYSTEM_VERSION);
                 }
                 break;
-                case GET_TOF_DISTANCE: {
-                    GetTOFDistance();
-                    v_data[2] = 0x04;
-                    v_data.insert(v_data.end() - 1, tof.gbuf[10]);
-                    v_data.insert(v_data.end() - 1, tof.gbuf[11]);
-                }
-                break;
                 case SET_SSID_PWD: {
                     unsigned long t_begin = millis();
                     string info;
@@ -416,6 +410,24 @@ bool Transponder::HandleOtherMsg(vector<unsigned char> &v_data)
             switch (v_data[3]) {
                 case SET_COMMUNICATE_MODE: {
                     is_transparent_mode = v_data[4];
+                }
+                break;
+                case CUSTOM_GRIPPER_OPEN: {
+                    // Initialize the custom gripper servo pin
+                    mygripper.cg_setup();
+                    // 0xfe 0xfe 02 0x99 angle_open 0xfa
+                    uint8_t open_angle_req = v_data[4];
+                    mygripper.cg_open(open_angle_req);
+                    delay(50);      
+                }
+                break;
+                case CUSTOM_GRIPPER_CLOSE: {
+                    // Initialize the custom gripper servo pin
+                    mygripper.cg_setup();
+                    // 0xfe 0xfe 02 0x98 angle_close 0xfa
+                    uint8_t close_angle_req = v_data[4];
+                    mygripper.cg_close(close_angle_req);
+                    delay(50);      
                 }
                 break;
 #if (!defined MyCobot_Pro_350)
